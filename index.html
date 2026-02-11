@@ -32,14 +32,12 @@
         /* --- ANIMASI --- */
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulseBtn { 0% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); } 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); } }
+        @keyframes pulseBtn { 0% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); } 100% { opacity: 1; } }
         @keyframes tinkerbell { 0% { opacity: 0.8; text-shadow: 0 0 0px #fff; transform: scale(1); } 50% { opacity: 1; text-shadow: 0 0 10px #ffd700; transform: scale(1.05); } 100% { opacity: 0.8; } }
-        @keyframes scrollUp { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
 
         section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px 100px 20px; position: relative; }
 
-        /* --- BOTTOM NAVBAR (7 MENU) --- */
+        /* --- BOTTOM NAVBAR SCROLLABLE --- */
         .bottom-nav {
             position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
             width: 98%; max-width: 500px; background: rgba(255,255,255,0.98);
@@ -47,33 +45,27 @@
             display: flex; justify-content: space-between; padding: 10px 5px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2); border: 1px solid var(--gold);
             z-index: 1000; opacity: 0; transition: opacity 0.5s;
+            overflow-x: auto; white-space: nowrap;
         }
+        .bottom-nav::-webkit-scrollbar { display: none; }
+
         .nav-item { 
             color: #999; text-decoration: none; font-size: 0.55rem;
             display: flex; flex-direction: column; align-items: center; 
-            width: 14%; transition: 0.3s; position: relative; 
+            min-width: 60px; transition: 0.3s; position: relative; 
         }
         .nav-item i { font-size: 1.1rem; margin-bottom: 3px; transition: 0.3s; }
         
         .nav-item.active { color: var(--dark-gold); font-weight: 800; }
         .nav-item.active i { transform: translateY(-3px); color: var(--gold); filter: drop-shadow(0 2px 2px rgba(197, 160, 89, 0.5)); }
         
-        /* --- FOOTER KECIL (12px) --- */
+        /* --- FOOTER --- */
         .sy-am-footer { 
-            position: fixed; 
-            bottom: 85px; 
-            left: 20px; 
-            z-index: 1002;
-            font-family: 'Cinzel', serif; 
-            font-weight: 900; 
-            font-size: 12px; 
-            letter-spacing: 1px; 
-            background: linear-gradient(90deg, #FFD700 0%, #000000 70%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text;
-            filter: drop-shadow(0px 0px 1px rgba(255,255,255,1));
-            animation: tinkerbell 3s infinite;
+            position: fixed; bottom: 85px; left: 20px; z-index: 1002;
+            font-family: 'Cinzel', serif; font-weight: 900; font-size: 12px; 
+            letter-spacing: 1px; background: linear-gradient(90deg, #FFD700 0%, #000000 70%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            background-clip: text; animation: tinkerbell 3s infinite;
         }
 
         /* --- COVER ELEMENTS --- */
@@ -158,8 +150,9 @@
     </div>
 
     <canvas id="canvas-dust"></canvas>
+    
     <audio id="song" loop preload="auto">
-        <source src="https://www.bensound.com/bensound-music/bensound-relaxing.mp3" type="audio/mpeg">
+        <source src="https://ia801607.us.archive.org/19/items/MaherZainYaNabiSalamAlayka/Maher%20Zain%20-%20Ya%20Nabi%20Salam%20Alayka.mp3" type="audio/mpeg">
     </audio>
     
     <div class="music-toggle" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-play"></i></div>
@@ -193,7 +186,7 @@
 
         <div class="guest-photos-container">
             <div class="guest-photo-frame"><img src="https://i.ibb.co.com/bkXRhNw/Background-Eraser-20260208-115610673-removebg-preview.jpg" alt="Kyai"></div>
-            <div class="guest-photo-frame"><img src="https://i.ibb.co.com/vxRdxkKQ/Background-Eraser-20260208-114755008-removebg-preview.jpg" alt="Nyai"></div>
+            <div class="guest-photo-frame"><img src="https://i.ibb.co.com/rRWdGtdC/IMG-20260212-002051-removebg-preview.jpg" alt="Nyai"></div>
         </div>
 
         <button class="btn-gold" style="animation: pulseBtn 2s infinite;" onclick="startApp()">BUKA UNDANGAN</button>
@@ -335,16 +328,17 @@
         const icon = document.getElementById("musicIcon");
         const navbar = document.getElementById("navbar");
 
-        // --- 2. START APP & TRIGGER AUDIO ---
+        // --- 2. START APP & MUSIC FIX ---
         function startApp() {
-            // Usaha play musik pertama
+            // Coba play musik
             song.play().then(() => {
                 icon.classList.add('playing');
-                icon.className = "fas fa-spin fa-compact-disc"; // Ikon muter
+                icon.className = "fas fa-spin fa-compact-disc";
             }).catch((e) => {
-                console.log("Menunggu interaksi user untuk audio.");
+                console.log("Audio awal gagal, menunggu interaksi user");
             });
 
+            icon.className = "fas fa-spin fa-compact-disc"; // Update icon status
             document.getElementById('isi').scrollIntoView({behavior: 'smooth'});
             navbar.style.opacity = "1"; 
             
@@ -352,13 +346,16 @@
             typeWriter();
         }
 
-        // --- TRICK JITU: KLIK SEMBARANG UNTUK PLAY MUSIK ---
+        // --- TRICK: CATCH ANY CLICK TO PLAY MUSIC ---
+        // Jika tombol utama gagal memutar musik, klik sembarang di layar akan memaksanya berputar.
         document.body.addEventListener('click', function() {
             if(song.paused) {
-                song.play();
-                icon.classList.add('playing');
+                song.play().then(() => {
+                    icon.classList.add('playing');
+                    icon.className = "fas fa-spin fa-compact-disc";
+                });
             }
-        }, { once: true }); // Mung pisan tok cek gak ganggu
+        }, { once: true }); // Hanya jalan sekali
 
         function createConfetti() {
             const c = document.createElement('div');
@@ -414,38 +411,31 @@
             }
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+        // --- NAVIGATION SMART ACTIVE & SCROLLABLE (KODE SOKO SAMPEYAN) ---
+        window.addEventListener('scroll', () => {
+            let current = "";
+            const sections = document.querySelectorAll("section, div[id]");
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute("id");
+                }
             });
+
+            document.querySelectorAll(".nav-item").forEach((li) => {
+                li.classList.remove("active");
+                if (li.getAttribute("href").includes(current)) {
+                    li.classList.add("active");
+                    // Auto scroll menu neng ngisor
+                    li.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.glass-card').forEach((el) => observer.observe(el));
-
-        // ACTIVE LINK NAVBAR (LOGIC FINAL)
-        window.addEventListener('scroll', () => {
-            let current = '';
-            document.querySelectorAll('section, div[id]').forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 4)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('.nav-item').forEach(li => {
-                li.classList.remove('active');
-                if (li.getAttribute('href').includes(current)) {
-                    li.classList.add('active');
-                }
-            });
-        });
-
-        document.getElementById('waForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nm = document.getElementById('nama').value;
-            const st = document.getElementById('status').value;
-            window.open(`https://wa.me/6282337288095?text=Konfirmasi HBH IKSAG%0ANama: *${nm}*%0AStatus: *${st}*`, '_blank');
-        });
 
         // --- 5. COUNTDOWN & CANVAS ---
         const targetDate = new Date("March 31, 2026 19:00:00").getTime();
@@ -467,7 +457,7 @@
             update() { this.x+=this.spX; this.y+=this.spY; if(this.size>0.2)this.size-=0.005; if(this.size<=0.2){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2; } }
             draw() { ctx.fillStyle='#c5a059'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
         }
-        for(let k=0; k<50; k++) particles.push(new Particle());
+        for(let k=0; k<40; k++) particles.push(new Particle());
         function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
         animate();
     </script>
