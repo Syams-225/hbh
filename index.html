@@ -39,7 +39,7 @@
 
         section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px 100px 20px; position: relative; }
 
-        /* --- BOTTOM NAVBAR (MENU BAWAH) --- */
+        /* --- BOTTOM NAVBAR (7 MENU) --- */
         .bottom-nav {
             position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
             width: 98%; max-width: 500px; background: rgba(255,255,255,0.98);
@@ -55,10 +55,26 @@
         }
         .nav-item i { font-size: 1.1rem; margin-bottom: 3px; transition: 0.3s; }
         
-        /* ACTIVE STATE (MENU NYALA) */
         .nav-item.active { color: var(--dark-gold); font-weight: 800; }
         .nav-item.active i { transform: translateY(-3px); color: var(--gold); filter: drop-shadow(0 2px 2px rgba(197, 160, 89, 0.5)); }
-        .nav-item:hover { color: var(--gold); }
+        
+        /* --- FOOTER KECIL (12px) --- */
+        .sy-am-footer { 
+            position: fixed; 
+            bottom: 85px; 
+            left: 20px; 
+            z-index: 1002;
+            font-family: 'Cinzel', serif; 
+            font-weight: 900; 
+            font-size: 12px; 
+            letter-spacing: 1px; 
+            background: linear-gradient(90deg, #FFD700 0%, #000000 70%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            filter: drop-shadow(0px 0px 1px rgba(255,255,255,1));
+            animation: tinkerbell 3s infinite;
+        }
 
         /* --- COVER ELEMENTS --- */
         .logo-wrapper { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; animation: fadeInUp 1s ease-out; }
@@ -83,20 +99,16 @@
         .guest-photo-frame::after { content: ''; position: absolute; inset: 5px; border: 1px solid var(--dark-gold); border-radius: 10px; pointer-events: none; }
         .guest-photo-frame img { width: 100%; height: auto; max-height: 100%; object-fit: contain; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); }
 
-        /* --- CONTENT CARDS --- */
-        /* Pastikan ID offset dihitung benar agar menu aktif pas di tengah layar */
         .glass-card { max-width: 480px; width: 100%; padding: 40px 30px; border-radius: 25px; background: var(--glass); border: 1px solid var(--soft-gold); color: var(--text); margin-bottom: 40px; box-shadow: 0 15px 40px rgba(197, 160, 89, 0.15); opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; position: relative; overflow: hidden; scroll-margin-top: 100px; }
         .glass-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(to right, var(--gold), var(--dark-gold)); }
         .glass-card.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- BUKU TAMU & UCAPAN --- */
         .wishes-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
         .wishes-box { height: 300px; overflow-y: auto; background: #fff; border-radius: 10px; padding: 15px; border: 1px solid var(--soft-gold); box-shadow: inset 0 0 10px rgba(0,0,0,0.05); }
         .wish-card { background: #faf8f5; padding: 12px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid var(--gold); font-size: 0.9rem; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.05); animation: fadeInUp 0.5s ease; }
         .wish-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.75rem; color: #888; }
         .wish-name { font-weight: bold; color: var(--dark-gold); font-size: 0.95rem; }
 
-        /* --- COMPONENTS --- */
         .arabic-bismillah { font-family: 'Amiri', serif; font-size: 2rem; color: var(--dark-gold); margin-bottom: 20px; font-weight: 700; }
         .rundown-list { list-style: none; padding: 0; text-align: left; margin-left: 10px; }
         .rundown-list li { padding: 12px 0; border-bottom: 1px dashed var(--soft-gold); display: flex; align-items: flex-start; }
@@ -112,25 +124,6 @@
         .music-toggle { position: fixed; bottom: 85px; right: 20px; z-index: 1000; background: white; color: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.2); border: 2px solid var(--gold); }
         .music-toggle.playing i { animation: spin 3s linear infinite; }
 
-        /* --- FOOTER (DIPERKECIL) --- */
-        .sy-am-footer { 
-            position: fixed; 
-            bottom: 85px; 
-            left: 20px; 
-            z-index: 1002;
-            font-family: 'Cinzel', serif; 
-            font-weight: 900; 
-            font-size: 12px; /* UKURAN PAS */
-            letter-spacing: 1.5px; 
-            /* Gradasi Emas-Hitam Tegas */
-            background: linear-gradient(to right, #FFD700 0%, #000000 50%, #FFD700 100%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text;
-            filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
-            animation: tinkerbell 3s infinite;
-        }
-        
         .flower { position: absolute; width: 180px; height: 180px; z-index: 10; opacity: 0.5; pointer-events: none; fill: var(--gold); }
         .top-left { top: -20px; left: -20px; }
         .bottom-right { bottom: -20px; right: -20px; transform: rotate(180deg); }
@@ -139,12 +132,10 @@
         .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; animation: fall linear forwards; opacity: 0; z-index: 9999; }
         @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 1; } }
 
-        /* GALERI SLIDER STYLE */
         .slider-container { display: flex; overflow-x: auto; gap: 15px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
         .slider-item { flex: 0 0 85%; height: 220px; border-radius: 15px; overflow: hidden; scroll-snap-align: center; border: 2px solid var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.1); position: relative; }
         .slider-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         
-        /* INPUT FORM */
         input, select, textarea { width: 100%; padding: 15px; margin: 8px 0; border-radius: 12px; border: 1px solid #ddd; background: #fff; outline: none; font-family: inherit; font-size: 0.9rem; transition: 0.3s; }
         input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
     </style>
@@ -163,11 +154,13 @@
 
     <div id="preloader">
         <div class="loader-spinner"></div>
-        <div class="loader-text">IKSAG AL-KARIMI</div>
+        <div class="loader-text">IKSAG Lirboyo</div>
     </div>
 
     <canvas id="canvas-dust"></canvas>
-    <audio id="song" loop preload="auto"><source src="ncs.mp3" type="audio/mpeg"></audio>
+    <audio id="song" loop preload="auto">
+        <source src="https://ia800403.us.archive.org/27/items/IslamicBackgroundMusicNoCopyrightNasheedRingtone/Islamic%20Background%20Music%20No%20Copyright%20Nasheed%20Ringtone.mp3" type="audio/mpeg">
+    </audio>
     
     <div class="music-toggle" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-play"></i></div>
     <div class="sy-am-footer">©Sy•Am-°wl</div>
@@ -301,7 +294,7 @@
                 </table>
             </div>
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://goo.gl/maps/PlaceIDHere" class="btn-gold" target="_blank" style="margin-top:20px;">LIHAT PETA</a>
+                <a href="https://maps.app.goo.gl/ct2R57qh2vogfxZVA" class="btn-gold" target="_blank" style="margin-top:20px;">LIHAT PETA</a>
                 <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Halal+Bihalal+IKSAG&dates=20260331T190000/20260331T220000&details=Bertempat+di+PonPes+Al-Karimi+Tebuwung+Gresik&location=PonPes+Al-Karimi" class="btn-gold btn-outline" target="_blank" style="margin-top:20px;">SIMPAN TANGGAL</a>
             </div>
             <div style="margin-top: 30px;">
@@ -342,16 +335,30 @@
         const icon = document.getElementById("musicIcon");
         const navbar = document.getElementById("navbar");
 
-        // --- 2. START APP ---
+        // --- 2. START APP & TRIGGER AUDIO ---
         function startApp() {
-            song.play().then(() => icon.classList.add('playing')).catch((e) => console.log("Audio blocked"));
-            icon.className = "fas fa-pause";
+            // Usaha play musik pertama
+            song.play().then(() => {
+                icon.classList.add('playing');
+                icon.className = "fas fa-spin fa-compact-disc"; // Ikon muter
+            }).catch((e) => {
+                console.log("Menunggu interaksi user untuk audio.");
+            });
+
             document.getElementById('isi').scrollIntoView({behavior: 'smooth'});
             navbar.style.opacity = "1"; 
             
             for(let i=0; i<50; i++) createConfetti();
             typeWriter();
         }
+
+        // --- TRICK JITU: KLIK SEMBARANG UNTUK PLAY MUSIK ---
+        document.body.addEventListener('click', function() {
+            if(song.paused) {
+                song.play();
+                icon.classList.add('playing');
+            }
+        }, { once: true }); // Mung pisan tok cek gak ganggu
 
         function createConfetti() {
             const c = document.createElement('div');
@@ -364,8 +371,13 @@
         }
 
         function toggleMusic() {
-            if (song.paused) { song.play(); icon.className = "fas fa-pause"; icon.classList.add('playing'); } 
-            else { song.pause(); icon.className = "fas fa-play"; icon.classList.remove('playing'); }
+            if (song.paused) { 
+                song.play(); 
+                icon.className = "fas fa-spin fa-compact-disc";
+            } else { 
+                song.pause(); 
+                icon.className = "fas fa-play"; 
+            }
         }
 
         function copyRek() {
@@ -409,13 +421,13 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.glass-card').forEach((el) => observer.observe(el));
 
-        // ACTIVE LINK NAVBAR (LOGIC BARU)
+        // ACTIVE LINK NAVBAR (LOGIC FINAL)
         window.addEventListener('scroll', () => {
             let current = '';
             document.querySelectorAll('section, div[id]').forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                if (pageYOffset >= (sectionTop - sectionHeight / 4)) {
                     current = section.getAttribute('id');
                 }
             });
