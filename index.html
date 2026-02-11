@@ -3,244 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Halal Bihalal IKSAG Al-Karimi</title>
+    <title>Undangan Halal Bihalal IKSAG</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            --gold: #d4af37;
-            --dark-green: #062c1d;
-            --mid-green: #0a4d34;
-            --white: #ffffff;
+            --gold: #c5a059;
+            --dark-gold: #947438;
+            --cream: #fdfcf9;
+            --soft-gold: #f4eee0;
+            --text: #332d21;
         }
 
         * { box-sizing: border-box; }
         body, html { 
             margin: 0; padding: 0; 
             font-family: 'Montserrat', sans-serif; 
-            background-color: var(--dark-green); 
-            overflow-x: hidden; 
+            background-color: var(--cream); 
             scroll-behavior: smooth;
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-        /* Background Islami Estetik */
-        .bg-fixed {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, var(--mid-green) 0%, var(--dark-green) 100%);
-            z-index: -1;
+        /* ORNAMEN BUNGA SVG */
+        .flower {
+            position: absolute; width: 150px; height: 150px;
+            z-index: 10; opacity: 0.6; pointer-events: none;
+            fill: var(--gold);
         }
-        
+        .top-left { top: 0; left: 0; }
+        .bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+
         .bg-pattern {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
-            opacity: 0.15; z-index: -1;
+            background-color: var(--cream);
+            background-image: radial-gradient(var(--soft-gold) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            z-index: -1;
         }
-
-        /* Ornamen Mandala SVG (Anti-Error/Not Found) */
-        .mandala {
-            position: fixed; width: 250px; height: 250px;
-            fill: var(--gold); opacity: 0.3; z-index: 0; pointer-events: none;
-        }
-        .top-left { top: -80px; left: -80px; }
-        .top-right { top: -80px; right: -80px; }
 
         section {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            padding: 60px 20px; position: relative; z-index: 1;
+            padding: 60px 20px; position: relative;
         }
 
-        /* Logo Frame */
         .logo-frame {
-            width: 140px; height: 140px; border-radius: 50%;
-            border: 4px solid var(--gold); padding: 5px;
-            background: white; margin-bottom: 25px;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-            overflow: hidden;
+            width: 90px; height: 90px; border-radius: 50%;
+            border: 2px solid var(--gold); background: white; 
+            margin-bottom: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .logo-img { width: 100%; height: 100%; object-fit: cover; }
 
-        .title-hbh { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 2.8rem; color: var(--gold); 
-            margin: 10px 0; line-height: 1.2;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        .guest-honor { 
+            margin: 25px 0; max-width: 500px; 
+            padding: 20px; border: 1px double var(--gold);
+            background: rgba(255,255,255,0.5);
         }
+        .guest-text { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--dark-gold); }
+        .guest-name { display: block; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-top: 10px; }
 
-        /* Timer Estetik */
-        .timer { display: flex; gap: 15px; margin: 30px 0; }
-        .timer-box { 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid var(--gold); 
-            padding: 12px; min-width: 75px; border-radius: 15px; 
-            backdrop-filter: blur(8px);
+        .unified-photo {
+            width: 100%; max-width: 300px; border: 3px solid white;
+            border-radius: 15px; overflow: hidden;
+            display: flex; flex-direction: column; margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            outline: 1px solid var(--gold);
         }
-        .timer-box span { display: block; font-weight: bold; font-size: 1.5rem; color: var(--gold); }
-        .timer-box small { font-size: 0.7rem; color: #fff; text-transform: uppercase; }
+        .unified-photo img { width: 100%; display: block; border-bottom: 2px solid white; }
 
-        /* Card Konten */
         .glass-card {
-            max-width: 500px; width: 100%; padding: 40px 30px; border-radius: 30px;
-            background: rgba(255, 255, 255, 0.98); 
-            border: 2px solid var(--gold);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
+            max-width: 450px; width: 100%; padding: 40px 25px; border-radius: 15px;
+            background: white; border: 1px solid var(--soft-gold); 
+            color: var(--text); margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(197, 160, 89, 0.1);
         }
+
+        /* FORMAT TEKS BARU */
+        .event-detail {
+            text-align: left; margin-top: 15px; font-size: 0.95rem; line-height: 1.8;
+        }
+        .event-detail table { width: 100%; }
+        .event-detail td { vertical-align: top; padding-bottom: 8px; }
+        .event-detail td:first-child { width: 80px; font-weight: 600; color: var(--dark-gold); }
 
         .btn-gold {
-            background: linear-gradient(135deg, #b8860b 0%, #d4af37 100%);
-            color: white; padding: 18px 45px;
-            border-radius: 50px; text-decoration: none; border: none;
-            font-weight: 600; cursor: pointer; display: inline-block;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            transition: 0.3s; letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: white; padding: 15px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; display: inline-block;
+            margin: 10px 0; border: none; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+            font-size: 0.85rem; letter-spacing: 1px;
         }
-        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--gold); }
+        .btn-gold:hover { transform: translateY(-3px); }
 
-        .payment-box {
-            background: #f9f9f9; border: 1px solid #ddd; padding: 15px;
-            border-radius: 15px; margin: 10px 0; display: flex;
-            justify-content: space-between; align-items: center;
+        .countdown-container { display: flex; gap: 10px; margin-top: 25px; justify-content: center; }
+        .countdown-item { 
+            background: white; padding: 10px; border-radius: 10px; min-width: 65px; 
+            border: 1px solid var(--soft-gold);
         }
+        .countdown-item span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--dark-gold); }
+        .countdown-item label { font-size: 0.6rem; text-transform: uppercase; color: #888; }
+
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; background: #fafafa; }
 
         .music-toggle {
-            position: fixed; bottom: 25px; left: 25px; z-index: 100;
-            background: var(--gold); color: white; width: 50px; height: 50px;
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+            background: white; color: var(--gold); width: 45px; height: 45px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3); cursor: pointer;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid var(--gold);
+        }
+
+        .bank-info {
+            background: #f8f9fa; border: 1px dashed var(--gold);
+            padding: 15px; border-radius: 10px; margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        /* GRADIENT TEXT FOOTER */
+        .sy-am-footer {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 14px;
+            margin-top: 40px;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #d4af37, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-fixed"></div>
     <div class="bg-pattern"></div>
-    
-    <svg class="mandala top-left" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2"/>
-        <path d="M50 10 L55 30 L75 35 L55 40 L50 60 L45 40 L25 35 L45 30 Z" fill="currentColor"/>
-        <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
-    </svg>
-    <svg class="mandala top-right" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2"/>
-        <path d="M50 10 L55 30 L75 35 L55 40 L50 60 L45 40 L25 35 L45 30 Z" fill="currentColor"/>
-    </svg>
 
-    <audio id="song" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-india.mp3" type="audio/mpeg">
+    <audio id="song" loop preload="auto">
+        <source src="ncs.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="music-toggle" onclick="playSong()"><i id="musicIcon" class="fas fa-play"></i></div>
+    <div class="music-toggle" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-play"></i></div>
 
     <section id="cover">
+        <svg class="flower top-left" viewBox="0 0 100 100">
+            <path d="M0 0 C 20 0, 50 10, 50 50 C 10 50, 0 20, 0 0 M50 50 C 50 10, 80 0, 100 0 C 100 20, 90 50, 50 50 M50 50 C 90 50, 100 80, 100 100 C 80 100, 50 90, 50 50 M50 50 C 50 90, 20 100, 0 100 C 0 80, 10 50, 50 50" />
+        </svg>
+
         <div class="logo-frame">
-            <img src="https://i.ibb.co.com/mrXzRsRY/IMG-20260207-221055.jpg" class="logo-img" alt="Logo IKSAG">
+            <img src="https://i.ibb.co.com/mrXzRsRY/IMG-20260207-221055.jpg" class="logo-img" alt="Logo">
         </div>
-        <p style="letter-spacing: 5px; font-size: 0.9rem; color: var(--gold); font-weight: 600;">KELUARGA BESAR</p>
-        <h1 class="title-hbh">Halal Bihalal<br>IKSAG Al-Karimi</h1>
+
+        <h1 style="font-family: 'Playfair Display'; color: var(--text); margin: 5px 0; font-size: 2rem; font-weight: 700;">HALAL BIHALAL <span style="color:var(--gold)">IKSAG</span></h1>
         
-        <div class="timer">
-            <div class="timer-box"><span id="d">00</span><small>Hari</small></div>
-            <div class="timer-box"><span id="h">00</span><small>Jam</small></div>
-            <div class="timer-box"><span id="m">00</span><small>Menit</small></div>
-            <div class="timer-box"><span id="s">00</span><small>Detik</small></div>
-        </div>
-
-        <a href="#acara" class="btn-gold" onclick="playSong()">BUKA UNDANGAN</a>
-    </section>
-
-    <section id="acara">
-        <div class="glass-card">
-            <h2 style="font-family: 'Alex Brush'; font-size: 3.5rem; color: var(--dark-green); margin: 0;">Waktu & Lokasi</h2>
-            <div style="height: 2px; background: var(--gold); width: 100px; margin: 20px auto;"></div>
-            <p style="margin: 20px 0; font-size: 1.1rem; line-height: 1.8; color: #333;">
-                <span style="background: var(--dark-green); color: white; padding: 5px 15px; border-radius: 8px;">SENIN MALAM SELASA</span><br><br>
-                <strong>30 Maret 2026</strong><br>
-                11 Syawal 1448 H<br>
-                <i class="far fa-clock"></i> 19.00 WIB - Selesai
+        <div class="guest-honor">
+            <p class="guest-text">
+                <i>Insya Allah</i> dihadiri oleh:
+                <span class="guest-name">K.H A.H.S Zamzami Mahrus <br>& Ibu Nyai Hj. Noor Hannah Abdul Ghofar</span>
+                <small style="display:block; margin-top:5px;">(Pengasuh Pondok Pesantren Al-Baqoroh Lirboyo Kediri)</small>
             </p>
-            <p style="color: #555;"><strong>Pondok Pesantren Al-Karimi</strong><br>Tebuwung, Dukun, Gresik</p>
-            <div style="margin: 25px 0; border-radius: 20px; overflow: hidden; border: 2px solid #eee;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.573523412554!2d112.4497!3d-6.9414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTYnMzIuNCJTIDExMsKwMjYnNTguOSJF!5e0!3m2!1sid!2sid!4v1700000000000" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <a href="https://maps.app.goo.gl/uXv7nE6K3F2n8H3L8" class="btn-gold" target="_blank">LIHAT GOOGLE MAPS</a>
         </div>
+
+        <div class="unified-photo">
+            <img src="https://i.ibb.co.com/mrm10YRt/Background-Eraser-20260208-114755008.jpg" alt="Foto 1">
+            <img src="https://i.ibb.co.com/NdGNDMG6/Background-Eraser-20260208-115610673.jpg" alt="Foto 2">
+        </div>
+
+        <a href="#isi" class="btn-gold" onclick="startApp()">BUKA UNDANGAN</a>
+
+        <svg class="flower bottom-right" viewBox="0 0 100 100">
+            <path d="M0 0 C 20 0, 50 10, 50 50 C 10 50, 0 20, 0 0 M50 50 C 50 10, 80 0, 100 0 C 100 20, 90 50, 50 50 M50 50 C 90 50, 100 80, 100 100 C 80 100, 50 90, 50 50 M50 50 C 50 90, 20 100, 0 100 C 0 80, 10 50, 50 50" />
+        </svg>
     </section>
 
-    <section id="hadiah">
-        <h2 style="font-family: 'Alex Brush'; font-size: 3.5rem; color: var(--gold); margin: 0;">Amplop Digital</h2>
-        <p style="color: #eee; margin: 15px 0 30px;">Tanda kasih dapat disalurkan melalui:</p>
-        
-        <div class="glass-card" style="padding: 20px;">
-            <div class="payment-box">
-                <span style="font-weight: bold; color: #2979ff;"><i class="fas fa-wallet"></i> DANA</span>
-                <span style="font-family: monospace; font-size: 1.1rem;">081217021016</span>
-                <i class="far fa-copy" style="cursor: pointer; color: var(--gold);" onclick="copyText('081217021016')"></i>
+    <section id="isi">
+        <div class="glass-card">
+            <h2 style="font-family: 'Playfair Display'; font-size: 1.8rem; margin: 0; color: var(--dark-gold);">Waktu & Lokasi</h2>
+            <hr style="border: 0; border-top: 1px solid var(--soft-gold); margin: 20px 0;">
+            
+            <div class="event-detail">
+                <table>
+                    <tr>
+                        <td>Hari</td>
+                        <td>: Selasa</td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal</td>
+                        <td>: 11 Syawal 1447 H. / 31 Maret 2026 M.</td>
+                    </tr>
+                    <tr>
+                        <td>Waktu</td>
+                        <td>: 19.00 WIB s.d Selesai</td>
+                    </tr>
+                    <tr>
+                        <td>Tempat</td>
+                        <td>: PonPes Al-Karimi Ds. Tebuwung Kec. Dukun Kab. Gresik</td>
+                    </tr>
+                </table>
             </div>
-            <div class="payment-box">
-                <span style="font-weight: bold; color: var(--dark-green);"><i class="fas fa-university"></i> BNI</span>
-                <span style="font-family: monospace; font-size: 1.1rem;">1234567890</span>
-                <i class="far fa-copy" style="cursor: pointer; color: var(--gold);" onclick="copyText('1234567890')"></i>
-            </div>
-        </div>
-    </section>
 
-    <section id="rsvp">
-        <div class="glass-card" style="text-align: left;">
-            <h2 style="font-family: 'Alex Brush'; font-size: 3.5rem; color: var(--dark-green); text-align: center;">Buku Tamu</h2>
+            <a href="https://goo.gl/maps/PlaceIDHere" class="btn-gold" target="_blank" style="margin-top:20px;">LIHAT PETA</a>
+        </div>
+
+        <div class="glass-card">
+            <h2 style="font-family: 'Playfair Display'; font-size: 1.8rem; margin-bottom: 20px; color: var(--dark-gold);">Konfirmasi</h2>
             <form id="waForm">
-                <label style="font-weight: 600; font-size: 0.85rem; color: #666;">Nama Lengkap</label>
-                <input type="text" id="nama" placeholder="Contoh: Ahmad Zaini" style="width: 100%; padding: 12px; margin: 8px 0 20px; border: 1px solid #ddd; border-radius: 12px;" required>
-                
-                <label style="font-weight: 600; font-size: 0.85rem; color: #666;">Kehadiran</label>
-                <select id="status" style="width: 100%; padding: 12px; margin: 8px 0 20px; border: 1px solid #ddd; border-radius: 12px;">
+                <input type="text" id="nama" placeholder="Nama Lengkap" required>
+                <select id="status">
                     <option value="Hadir">Insya Allah Hadir</option>
-                    <option value="Berhalangan">Mohon Maaf, Berhalangan</option>
+                    <option value="Berhalangan">Berhalangan</option>
                 </select>
-                
-                <button type="submit" class="btn-gold" style="width: 100%;">KIRIM KE WHATSAPP</button>
+                <button type="submit" class="btn-gold" style="width: 100%;">KIRIM WHATSAPP</button>
             </form>
         </div>
-        <p style="margin-top: 40px; color: var(--gold); letter-spacing: 3px; font-size: 0.8rem;">© 2026 IKSAG AL-KARIMI</p>
+
+        <div class="glass-card">
+            <h2 style="font-family: 'Playfair Display'; font-size: 1.8rem; color: var(--dark-gold); margin: 0;">Dompet Digital</h2>
+            <p style="font-size: 0.8rem; margin-top: 10px;">Salurkan Tali Kasih / Dana Sosial melalui:</p>
+            
+            <div class="bank-info">
+                <strong>BANK BRI</strong><br>
+                No. Rek: <span id="rek">621101022294539</span><br>
+                A.n: MUHAMMAD SYAIKHU ROSYIDIN
+            </div>
+            
+            <a href="https://link.dana.id/qr/5m8p0v8" class="btn-gold" style="background: #118eea; width: 100%;" target="_blank">TRANSFER VIA DANA</a>
+        </div>
+
+        <div class="glass-card">
+            <h2 style="font-family: 'Playfair Display'; font-size: 1.8rem; color: var(--dark-gold); margin: 0;">Contact Person</h2>
+            <p style="margin-top: 15px;">Informasi lebih lanjut hubungi panitia:</p>
+            <a href="https://wa.me/6282337288095" class="btn-gold" style="background: #25d366;"><i class="fab fa-whatsapp"></i> 0823 3728 8095</a>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <p style="font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">ACARA DIMULAI DALAM:</p>
+            <div class="countdown-container" id="timer">
+                <div class="countdown-item"><span id="days">00</span><label>Hari</label></div>
+                <div class="countdown-item"><span id="hours">00</span><label>Jam</label></div>
+                <div class="countdown-item"><span id="minutes">00</span><label>Menit</label></div>
+                <div class="countdown-item"><span id="seconds">00</span><label>Detik</label></div>
+            </div>
+        </div>
+        
+        <p style="font-size: 13px; color: #555; max-width: 350px; line-height: 1.4; margin-top: 30px;">
+            <strong>NB:</strong> Bilih TF BRI Kasuwun Ngirim Bukti TF teng Nomor WA niki: <a href="https://wa.me/6281918014347" style="color: var(--dark-gold); text-decoration: none; font-weight: bold;">0819 1801 4347</a>
+        </p>
+
+        <div class="sy-am-footer">
+            ©Sy•Am-
+        </div>
     </section>
 
     <script>
-        // CountDown
-        const goal = new Date("March 30, 2026 19:00:00").getTime();
-        setInterval(function() {
-            const now = new Date().getTime();
-            const diff = goal - now;
-            if (diff > 0) {
-                document.getElementById("d").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById("h").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById("m").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById("s").innerText = Math.floor((diff % (1000 * 60)) / 1000);
-            }
-        }, 1000);
-
-        // Music
         const song = document.getElementById("song");
-        function playSong() {
-            if (song.paused) { song.play(); document.getElementById("musicIcon").className = "fas fa-pause"; }
-            else { song.pause(); document.getElementById("musicIcon").className = "fas fa-play"; }
+        const icon = document.getElementById("musicIcon");
+
+        function startApp() {
+            // Memulai musik
+            song.play().then(() => {
+                console.log("Musik berputar");
+            }).catch((error) => {
+                console.log("Autoplay dicegah browser, perlu interaksi lagi: ", error);
+            });
+            icon.className = "fas fa-pause";
         }
 
-        // Copy
-        function copyText(txt) {
-            navigator.clipboard.writeText(txt);
-            alert("Nomor berhasil disalin!");
+        function toggleMusic() {
+            if (song.paused) {
+                song.play();
+                icon.className = "fas fa-pause";
+            } else {
+                song.pause();
+                icon.className = "fas fa-play";
+            }
         }
 
-        // WhatsApp
         document.getElementById('waForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const nm = document.getElementById('nama').value;
             const st = document.getElementById('status').value;
-            window.open(`https://wa.me/6281217021016?text=Halo Panitia IKSAG,%0ANama: *${nm}*%0AStatus: *${st}*`, '_blank');
+            // UPDATE: NOMOR WA KONFIRMASI DIGANTI
+            window.open(`https://wa.me/6282337288095?text=Konfirmasi Kehadiran HBH IKSAG%0ANama: *${nm}*%0AStatus: *${st}*`, '_blank');
         });
+
+        // COUNTDOWN
+        const targetDate = new Date("March 31, 2026 19:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
     </script>
 </body>
 </html>
-q
