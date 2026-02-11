@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+           <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -81,13 +81,30 @@
         .guest-box h3 { margin: 0; font-size: 0.9rem; font-weight: 500; color: #555; text-transform: uppercase; letter-spacing: 1px; }
         .guest-box #nama-tamu { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--text); margin-top: 10px; display: block; }
 
-        .guest-honor { margin: 30px 0; max-width: 500px; padding: 20px; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); animation: fadeInUp 1s ease-out 0.3s backwards; position: relative; }
+        /* REVISI JARAK FOTO MUNGGAH */
+        .guest-honor { 
+            margin: 15px 0 5px 0; /* Margin bawah dikurangi pol */
+            max-width: 500px; padding: 10px; 
+            border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); 
+            animation: fadeInUp 1s ease-out 0.3s backwards; position: relative; 
+        }
         .guest-honor::before { content: '★'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--cream); padding: 0 10px; color: var(--gold); }
         .guest-text { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark-gold); }
-        .guest-name { display: block; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-top: 10px; }
+        .guest-name { display: block; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-top: 5px; }
 
-        .guest-photos-container { display: flex; justify-content: center; gap: 20px; margin: 20px 0 40px 0; flex-wrap: wrap; animation: fadeInUp 1s ease-out 0.5s backwards; }
-        .guest-photo-frame { width: 150px; height: 190px; background: linear-gradient(to top, var(--soft-gold) 0%, white 100%); border: 3px solid var(--gold); border-radius: 15px; padding: 5px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: flex; align-items: flex-end; justify-content: center; position: relative; }
+        /* REVISI POSISI FOTO (Menduwur & Rapi) */
+        .guest-photos-container { 
+            display: flex; justify-content: center; gap: 15px; 
+            margin: 5px 0 35px 0; /* Margin atas tipis */
+            flex-wrap: wrap; animation: fadeInUp 1s ease-out 0.5s backwards; 
+        }
+        .guest-photo-frame { 
+            width: 150px; height: 190px; 
+            background: linear-gradient(to top, var(--soft-gold) 0%, white 100%); 
+            border: 3px solid var(--gold); border-radius: 15px; padding: 5px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            display: flex; align-items: flex-end; justify-content: center; position: relative; 
+        }
         .guest-photo-frame::after { content: ''; position: absolute; inset: 5px; border: 1px solid var(--dark-gold); border-radius: 10px; pointer-events: none; }
         .guest-photo-frame img { width: 100%; height: auto; max-height: 100%; object-fit: contain; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); }
 
@@ -130,35 +147,6 @@
         
         input, select, textarea { width: 100%; padding: 15px; margin: 8px 0; border-radius: 12px; border: 1px solid #ddd; background: #fff; outline: none; font-family: inherit; font-size: 0.9rem; transition: 0.3s; }
         input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
-
-        /* --- COUNTDOWN MEWAH (REVISI) --- */
-        .countdown-container { 
-            display: flex; justify-content: center; gap: 15px; margin-top: 30px; 
-        }
-        .countdown-item { 
-            background: rgba(255,255,255,0.8); 
-            border: 1px solid var(--gold); 
-            border-radius: 15px; 
-            padding: 10px; 
-            min-width: 75px; 
-            display: flex; flex-direction: column; align-items: center; 
-            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.15);
-        }
-        .countdown-item span { 
-            display: block; 
-            font-family: 'Cinzel', serif; 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            color: var(--dark-gold); 
-            line-height: 1;
-        }
-        .countdown-item label { 
-            font-size: 0.65rem; 
-            text-transform: uppercase; 
-            color: #555; 
-            margin-top: 5px; 
-            letter-spacing: 1px; 
-        }
     </style>
 </head>
 <body>
@@ -179,8 +167,9 @@
     </div>
 
     <canvas id="canvas-dust"></canvas>
+    
     <audio id="song" loop preload="auto">
-        <source src="https://ia801607.us.archive.org/19/items/MaherZainYaNabiSalamAlayka/Maher%20Zain%20-%20Ya%20Nabi%20Salam%20Alayka.mp3" type="audio/mpeg">
+        <source src="ncs.mp3" type="audio/mpeg">
     </audio>
     
     <div class="music-toggle" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-play"></i></div>
@@ -297,7 +286,7 @@
             <div class="bank-info">
                 <strong>BANK BRI</strong><br>
                 No. Rek: <span id="rek">621101022294539</span> 
-                <button class="btn-gold" style="background:var(--gold); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;" onclick="copyRek()"><i class="fas fa-copy"></i> Salin</button><br>
+                <button class="copy-btn" style="background:var(--gold); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;" onclick="copyRek()"><i class="fas fa-copy"></i> Salin</button><br>
                 A.n: MUHAMMAD SYAIKHU ROSYIDIN
             </div>
             <a href="https://link.dana.id/minta?full_url=https://qr.dana.id/v1/281012012022031896298420" class="btn-gold" style="background: #118eea; width: 100%;" target="_blank">TRANSFER VIA DANA</a>
@@ -318,14 +307,25 @@
                 <a href="https://maps.app.goo.gl/ct2R57qh2vogfxZVA" class="btn-gold" target="_blank" style="margin-top:20px;">LIHAT PETA</a>
                 <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Halal+Bihalal+IKSAG&dates=20260331T190000/20260331T220000&details=Bertempat+di+PonPes+Al-Karimi+Tebuwung+Gresik&location=PonPes+Al-Karimi" class="btn-gold btn-outline" target="_blank" style="margin-top:20px;">SIMPAN TANGGAL</a>
             </div>
-            
             <div style="margin-top: 30px;">
                 <p style="font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; color: var(--gold);">ACARA DIMULAI DALAM:</p>
-                <div class="countdown-container" id="timer">
-                    <div class="countdown-item"><span id="days">00</span><label>Hari</label></div>
-                    <div class="countdown-item"><span id="hours">00</span><label>Jam</label></div>
-                    <div class="countdown-item"><span id="minutes">00</span><label>Menit</label></div>
-                    <div class="countdown-item"><span id="seconds">00</span><label>Detik</label></div>
+                <div class="countdown-container" id="timer" style="display:flex; justify-content:center; gap:15px; margin-top:30px;">
+                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
+                        <span id="days" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
+                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Hari</label>
+                    </div>
+                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
+                        <span id="hours" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
+                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Jam</label>
+                    </div>
+                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
+                        <span id="minutes" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
+                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Menit</label>
+                    </div>
+                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
+                        <span id="seconds" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
+                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Detik</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -341,7 +341,7 @@
         </p>
     </section>
 
-    <script>
+           <script>
         // --- 1. SETUP AWAL ---
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
@@ -357,34 +357,7 @@
         const icon = document.getElementById("musicIcon");
         const navbar = document.getElementById("navbar");
 
-        // --- 2. START APP & TRIGGER AUDIO ---
-        function startApp() {
-            // Usaha play musik pertama
-            song.play().then(() => {
-                icon.classList.add('playing');
-                icon.className = "fas fa-spin fa-compact-disc"; // Ikon muter
-            }).catch((e) => {
-                console.log("Audio awal gagal, menunggu interaksi user");
-            });
-
-            icon.className = "fas fa-spin fa-compact-disc"; // Update icon status
-            document.getElementById('isi').scrollIntoView({behavior: 'smooth'});
-            navbar.style.opacity = "1"; 
-            
-            for(let i=0; i<50; i++) createConfetti();
-            typeWriter();
-        }
-
-        // --- TRICK JITU: KLIK SEMBARANG UNTUK PLAY MUSIK ---
-        document.body.addEventListener('click', function() {
-            if(song.paused) {
-                song.play().then(() => {
-                    icon.classList.add('playing');
-                    icon.className = "fas fa-spin fa-compact-disc";
-                });
-            }
-        }, { once: true }); // Mung pisan tok cek gak ganggu
-
+        // --- 2. FUNGSI CONFETTI (DIBENERKE) ---
         function createConfetti() {
             const c = document.createElement('div');
             c.classList.add('confetti');
@@ -395,26 +368,68 @@
             setTimeout(() => c.remove(), 5000);
         }
 
+        // --- 3. START APP DENGAN PROMISE CHECKING ---
+        function startApp() {
+            // Coba play musik kanthi aman
+            var playPromise = song.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    icon.parentElement.classList.add('playing');
+                    icon.className = "fas fa-spin fa-compact-disc";
+                })
+                .catch(error => {
+                    console.log("Autoplay dicegah browser, nunggu klik user.");
+                });
+            }
+
+            document.getElementById('isi').scrollIntoView({behavior: 'smooth'});
+            navbar.style.opacity = "1"; 
+            
+            // Panggil confetti saiki wis aman
+            for(let i=0; i<50; i++) createConfetti();
+            typeWriter();
+        }
+
+        // --- 4. TOGGLE MUSIC ---
         function toggleMusic() {
             if (song.paused) { 
-                song.play(); 
-                icon.className = "fas fa-spin fa-compact-disc";
+                var playPromise = song.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        icon.parentElement.classList.add('playing');
+                        icon.className = "fas fa-spin fa-compact-disc";
+                    }).catch(error => {});
+                }
             } else { 
                 song.pause(); 
+                icon.parentElement.classList.remove('playing');
                 icon.className = "fas fa-play"; 
             }
         }
+
+        // --- 5. BACKUP AUDIO TRIGGER ---
+        document.body.addEventListener('click', function() {
+            if(song.paused) {
+                var playPromise = song.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        icon.parentElement.classList.add('playing');
+                        icon.className = "fas fa-spin fa-compact-disc";
+                    }).catch(error => {});
+                }
+            }
+        }, { once: true });
 
         function copyRek() {
             navigator.clipboard.writeText("621101022294539");
             alert("Nomor Rekening Berhasil Disalin!");
         }
 
-        // --- 3. FITUR BUKU TAMU INTERAKTIF ---
+        // --- 6. FITUR LAIN (Wish, Animasi, dll) ---
         function addWish() {
             const nama = document.getElementById('inputNama').value;
             const pesan = document.getElementById('inputPesan').value;
-            
             if(nama && pesan) {
                 const container = document.getElementById('wishesContainer');
                 const newWish = document.createElement('div');
@@ -424,12 +439,9 @@
                 document.getElementById('inputNama').value = '';
                 document.getElementById('inputPesan').value = '';
                 alert("Terima kasih atas ucapannya!");
-            } else {
-                alert("Mohon isi nama dan ucapan.");
             }
         }
 
-        // --- 4. ANIMASI SCROLL ---
         const textToType = "Assalamu’alaikum Wr. Wb. Dengan memohon Rahmat dan Ridho Allah SWT, kami mengharap kehadiran Bapak/Ibu/Saudara/i dalam acara:";
         let i = 0;
         function typeWriter() {
@@ -439,22 +451,20 @@
             }
         }
 
-        // --- NAVIGATION SMART ACTIVE & SCROLLABLE ---
+        // NAVIGATION ACTIVE STATE
         window.addEventListener('scroll', () => {
-            let current = "";
-            const sections = document.querySelectorAll("section, div[id]");
-            sections.forEach((section) => {
+            let current = '';
+            const sections = document.querySelectorAll('section, div.glass-card');
+            sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute("id");
+                if (pageYOffset >= (sectionTop - section.clientHeight / 3)) {
+                    current = section.getAttribute('id');
                 }
             });
-
-            document.querySelectorAll(".nav-item").forEach((li) => {
-                li.classList.remove("active");
-                if (li.getAttribute("href").includes(current)) {
-                    li.classList.add("active");
-                    // Auto scroll menu neng ngisor
+            document.querySelectorAll('.nav-item').forEach(li => {
+                li.classList.remove('active');
+                if (li.getAttribute('href').includes(current) && current !== '') {
+                    li.classList.add('active');
                     li.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                 }
             });
@@ -467,7 +477,7 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.glass-card').forEach((el) => observer.observe(el));
 
-        // --- 5. COUNTDOWN & CANVAS Capek aku ---
+        // COUNTDOWN
         const targetDate = new Date("March 31, 2026 19:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -478,6 +488,7 @@
             document.getElementById("seconds").innerText = Math.floor((dist % (1000 * 60)) / 1000);
         }, 1000);
 
+        // CANVAS ANIMATION
         const canvas = document.getElementById('canvas-dust');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -491,5 +502,6 @@
         function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
         animate();
     </script>
+
 </body>
 </html>
