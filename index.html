@@ -52,7 +52,7 @@
         .nav-item { 
             color: #999; text-decoration: none; font-size: 0.55rem;
             display: flex; flex-direction: column; align-items: center; 
-            min-width: 60px; transition: 0.3s; position: relative; 
+            width: 14%; transition: 0.3s; position: relative; 
         }
         .nav-item i { font-size: 1.1rem; margin-bottom: 3px; transition: 0.3s; }
         
@@ -130,6 +130,35 @@
         
         input, select, textarea { width: 100%; padding: 15px; margin: 8px 0; border-radius: 12px; border: 1px solid #ddd; background: #fff; outline: none; font-family: inherit; font-size: 0.9rem; transition: 0.3s; }
         input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
+
+        /* --- COUNTDOWN MEWAH (REVISI) --- */
+        .countdown-container { 
+            display: flex; justify-content: center; gap: 15px; margin-top: 30px; 
+        }
+        .countdown-item { 
+            background: rgba(255,255,255,0.8); 
+            border: 1px solid var(--gold); 
+            border-radius: 15px; 
+            padding: 10px; 
+            min-width: 75px; 
+            display: flex; flex-direction: column; align-items: center; 
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.15);
+        }
+        .countdown-item span { 
+            display: block; 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            color: var(--dark-gold); 
+            line-height: 1;
+        }
+        .countdown-item label { 
+            font-size: 0.65rem; 
+            text-transform: uppercase; 
+            color: #555; 
+            margin-top: 5px; 
+            letter-spacing: 1px; 
+        }
     </style>
 </head>
 <body>
@@ -150,7 +179,6 @@
     </div>
 
     <canvas id="canvas-dust"></canvas>
-    
     <audio id="song" loop preload="auto">
         <source src="https://ia801607.us.archive.org/19/items/MaherZainYaNabiSalamAlayka/Maher%20Zain%20-%20Ya%20Nabi%20Salam%20Alayka.mp3" type="audio/mpeg">
     </audio>
@@ -269,7 +297,7 @@
             <div class="bank-info">
                 <strong>BANK BRI</strong><br>
                 No. Rek: <span id="rek">621101022294539</span> 
-                <button class="copy-btn" style="background:var(--gold); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;" onclick="copyRek()"><i class="fas fa-copy"></i> Salin</button><br>
+                <button class="btn-gold" style="background:var(--gold); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;" onclick="copyRek()"><i class="fas fa-copy"></i> Salin</button><br>
                 A.n: MUHAMMAD SYAIKHU ROSYIDIN
             </div>
             <a href="https://link.dana.id/minta?full_url=https://qr.dana.id/v1/281012012022031896298420" class="btn-gold" style="background: #118eea; width: 100%;" target="_blank">TRANSFER VIA DANA</a>
@@ -290,6 +318,7 @@
                 <a href="https://maps.app.goo.gl/ct2R57qh2vogfxZVA" class="btn-gold" target="_blank" style="margin-top:20px;">LIHAT PETA</a>
                 <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Halal+Bihalal+IKSAG&dates=20260331T190000/20260331T220000&details=Bertempat+di+PonPes+Al-Karimi+Tebuwung+Gresik&location=PonPes+Al-Karimi" class="btn-gold btn-outline" target="_blank" style="margin-top:20px;">SIMPAN TANGGAL</a>
             </div>
+            
             <div style="margin-top: 30px;">
                 <p style="font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; color: var(--gold);">ACARA DIMULAI DALAM:</p>
                 <div class="countdown-container" id="timer">
@@ -328,12 +357,12 @@
         const icon = document.getElementById("musicIcon");
         const navbar = document.getElementById("navbar");
 
-        // --- 2. START APP & MUSIC FIX ---
+        // --- 2. START APP & TRIGGER AUDIO ---
         function startApp() {
-            // Coba play musik
+            // Usaha play musik pertama
             song.play().then(() => {
                 icon.classList.add('playing');
-                icon.className = "fas fa-spin fa-compact-disc";
+                icon.className = "fas fa-spin fa-compact-disc"; // Ikon muter
             }).catch((e) => {
                 console.log("Audio awal gagal, menunggu interaksi user");
             });
@@ -346,8 +375,7 @@
             typeWriter();
         }
 
-        // --- TRICK: CATCH ANY CLICK TO PLAY MUSIC ---
-        // Jika tombol utama gagal memutar musik, klik sembarang di layar akan memaksanya berputar.
+        // --- TRICK JITU: KLIK SEMBARANG UNTUK PLAY MUSIK ---
         document.body.addEventListener('click', function() {
             if(song.paused) {
                 song.play().then(() => {
@@ -355,7 +383,7 @@
                     icon.className = "fas fa-spin fa-compact-disc";
                 });
             }
-        }, { once: true }); // Hanya jalan sekali
+        }, { once: true }); // Mung pisan tok cek gak ganggu
 
         function createConfetti() {
             const c = document.createElement('div');
@@ -411,7 +439,7 @@
             }
         }
 
-        // --- NAVIGATION SMART ACTIVE & SCROLLABLE (KODE SOKO SAMPEYAN) ---
+        // --- NAVIGATION SMART ACTIVE & SCROLLABLE ---
         window.addEventListener('scroll', () => {
             let current = "";
             const sections = document.querySelectorAll("section, div[id]");
@@ -433,11 +461,13 @@
         });
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
         }, { threshold: 0.1 });
         document.querySelectorAll('.glass-card').forEach((el) => observer.observe(el));
 
-        // --- 5. COUNTDOWN & CANVAS ---
+        // --- 5. COUNTDOWN & CANVAS Capek aku ---
         const targetDate = new Date("March 31, 2026 19:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
