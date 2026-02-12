@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
     <title>Undangan Halal Bihalal IKSAG</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Amiri:wght@700&family=Great+Vibes&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
@@ -10,6 +12,7 @@
     
     <style>
         :root {
+            color-scheme: light; 
             --gold: #c5a059;
             --dark-gold: #947438;
             --cream: #fdfcf9;
@@ -19,11 +22,18 @@
         }
 
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: var(--cream); scroll-behavior: smooth; color: var(--text); overflow-x: hidden; }
+        
+        body, html { 
+            margin: 0; padding: 0; 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--cream) !important; 
+            color: var(--text) !important; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden; 
+        }
 
         /* --- BACKGROUND & PRELOADER --- */
         #canvas-dust { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .bg-pattern { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(var(--soft-gold) 0.5px, transparent 0.5px); background-size: 20px 20px; z-index: -2; }
         
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--cream); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.5s ease-out; }
         .loader-spinner { width: 60px; height: 60px; border: 5px solid var(--soft-gold); border-top: 5px solid var(--gold); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;}
@@ -37,7 +47,7 @@
 
         section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px 100px 20px; position: relative; }
 
-        /* --- BOTTOM NAVBAR SCROLLABLE --- */
+        /* --- BOTTOM NAVBAR --- */
         .bottom-nav {
             position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
             width: 98%; max-width: 500px; background: rgba(255,255,255,0.98);
@@ -55,7 +65,6 @@
             width: 14%; transition: 0.3s; position: relative; 
         }
         .nav-item i { font-size: 1.1rem; margin-bottom: 3px; transition: 0.3s; }
-        
         .nav-item.active { color: var(--dark-gold); font-weight: 800; }
         .nav-item.active i { transform: translateY(-3px); color: var(--gold); filter: drop-shadow(0 2px 2px rgba(197, 160, 89, 0.5)); }
         
@@ -81,9 +90,8 @@
         .guest-box h3 { margin: 0; font-size: 0.9rem; font-weight: 500; color: #555; text-transform: uppercase; letter-spacing: 1px; }
         .guest-box #nama-tamu { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--text); margin-top: 10px; display: block; }
 
-        /* REVISI JARAK FOTO MUNGGAH */
         .guest-honor { 
-            margin: 15px 0 5px 0; /* Margin bawah dikurangi pol */
+            margin: 15px 0 5px 0; 
             max-width: 500px; padding: 10px; 
             border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); 
             animation: fadeInUp 1s ease-out 0.3s backwards; position: relative; 
@@ -92,21 +100,39 @@
         .guest-text { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark-gold); }
         .guest-name { display: block; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-top: 5px; }
 
-        /* REVISI POSISI FOTO (Menduwur & Rapi) */
+        /* --- SETTINGAN FOTO 1:1 (KOTAK) --- */
         .guest-photos-container { 
-            display: flex; justify-content: center; gap: 15px; 
-            margin: 5px 0 35px 0; /* Margin atas tipis */
-            flex-wrap: wrap; animation: fadeInUp 1s ease-out 0.5s backwards; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 15px; 
+            margin: 15px 0 35px 0; 
+            flex-wrap: nowrap; 
+            animation: fadeInUp 1s ease-out 0.5s backwards; 
         }
         .guest-photo-frame { 
-            width: 150px; height: 190px; 
+            width: 165px; /* LEBAR */
+            height: 165px; /* TINGGI PODO (KOTAK 1:1) */
             background: linear-gradient(to top, var(--soft-gold) 0%, white 100%); 
-            border: 3px solid var(--gold); border-radius: 15px; padding: 5px; 
+            border: 3px solid var(--gold); 
+            border-radius: 15px; 
+            padding: 0; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
-            display: flex; align-items: flex-end; justify-content: center; position: relative; 
+            display: flex; 
+            align-items: flex-end; 
+            justify-content: center; 
+            position: relative; 
+            overflow: hidden; 
         }
         .guest-photo-frame::after { content: ''; position: absolute; inset: 5px; border: 1px solid var(--dark-gold); border-radius: 10px; pointer-events: none; }
-        .guest-photo-frame img { width: 100%; height: auto; max-height: 100%; object-fit: contain; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); }
+        
+        .guest-photo-frame img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Meniadakan ruang kosong, foto zoom rapi */
+            object-position: top; /* Fokus wajah */
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1)); 
+        }
 
         .glass-card { max-width: 480px; width: 100%; padding: 40px 30px; border-radius: 25px; background: var(--glass); border: 1px solid var(--soft-gold); color: var(--text); margin-bottom: 40px; box-shadow: 0 15px 40px rgba(197, 160, 89, 0.15); opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; position: relative; overflow: hidden; scroll-margin-top: 100px; }
         .glass-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(to right, var(--gold), var(--dark-gold)); }
@@ -145,8 +171,17 @@
         .slider-item { flex: 0 0 85%; height: 220px; border-radius: 15px; overflow: hidden; scroll-snap-align: center; border: 2px solid var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.1); position: relative; }
         .slider-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         
-        input, select, textarea { width: 100%; padding: 15px; margin: 8px 0; border-radius: 12px; border: 1px solid #ddd; background: #fff; outline: none; font-family: inherit; font-size: 0.9rem; transition: 0.3s; }
+        input, select, textarea { 
+            width: 100%; padding: 15px; margin: 8px 0; border-radius: 12px; border: 1px solid #ddd; 
+            background: #fff !important; color: #333 !important; 
+            outline: none; font-family: inherit; font-size: 0.9rem; transition: 0.3s; 
+        }
         input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
+
+        .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .countdown-item { background: rgba(255,255,255,0.8); border: 1px solid var(--gold); border-radius: 15px; padding: 10px; min-width: 75px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 5px 15px rgba(197, 160, 89, 0.15); }
+        .countdown-item span { display: block; font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: var(--dark-gold); line-height: 1; }
+        .countdown-item label { font-size: 0.65rem; text-transform: uppercase; color: #555; margin-top: 5px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -176,7 +211,7 @@
     <div class="sy-am-footer">©Sy•Am-°wl</div>
 
     <section id="cover">
-        <svg class="flower top-left" viewBox="0 0 100 100"><path d="M0 0 C 20 0, 50 10, 50 50 C 10 50, 0 20, 0 0 M50 50 C 50 10, 80 0, 100 0 C 100 20, 90 50, 50 50 M50 50 C 90 50, 100 80, 100 100 C 80 100, 50 90, 50 50 M50 50 C 50 90, 20 100, 0 100 C 0 80, 10 50, 50 50" /></svg>
+        <svg class="flower top-left" viewBox="0 0 100 100"><path d="M0 0 C 20 0, 50 10, 50 50 C 10 50, 0 20, 0 0 M50 50 C 50 10, 80 0, 100 0 C 100 20, 90 50, 100 80, 100 100 C 80 100, 50 90, 50 50 M50 50 C 50 90, 20 100, 0 100 C 0 80, 10 50, 50 50" /></svg>
 
         <div class="logo-wrapper">
             <div class="logo-frame"><img src="https://i.ibb.co.com/mrXzRsRY/IMG-20260207-221055.jpg" class="logo-img" alt="Logo 1"></div>
@@ -309,23 +344,11 @@
             </div>
             <div style="margin-top: 30px;">
                 <p style="font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; color: var(--gold);">ACARA DIMULAI DALAM:</p>
-                <div class="countdown-container" id="timer" style="display:flex; justify-content:center; gap:15px; margin-top:30px;">
-                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
-                        <span id="days" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
-                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Hari</label>
-                    </div>
-                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
-                        <span id="hours" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
-                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Jam</label>
-                    </div>
-                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
-                        <span id="minutes" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
-                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Menit</label>
-                    </div>
-                    <div class="countdown-item" style="background:rgba(255,255,255,0.8); border:1px solid var(--gold); border-radius:15px; padding:10px; min-width:75px; display:flex; flex-direction:column; align-items:center; box-shadow:0 5px 15px rgba(197,160,89,0.15);">
-                        <span id="seconds" style="display:block; font-family:'Cinzel',serif; font-size:1.8rem; font-weight:700; color:var(--dark-gold); line-height:1;">00</span>
-                        <label style="font-size:0.65rem; text-transform:uppercase; color:#555; margin-top:5px; letter-spacing:1px;">Detik</label>
-                    </div>
+                <div class="countdown-container" id="timer">
+                    <div class="countdown-item"><span id="days">00</span><label>Hari</label></div>
+                    <div class="countdown-item"><span id="hours">00</span><label>Jam</label></div>
+                    <div class="countdown-item"><span id="minutes">00</span><label>Menit</label></div>
+                    <div class="countdown-item"><span id="seconds">00</span><label>Detik</label></div>
                 </div>
             </div>
         </div>
@@ -421,12 +444,22 @@
             }
         }, { once: true });
 
+        // --- 6. FIX KONFIRMASI WA ---
+        document.getElementById('waForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nm = document.getElementById('nama').value;
+            const st = document.getElementById('status').value;
+            // Kirim ke nomor panitia (082337288095)
+            const url = `https://wa.me/6282337288095?text=Assalamualaikum, kulo *${nm}* konfirmasi *${st}* wonten acara Halal Bihalal IKSAG.`;
+            window.open(url, '_blank');
+        });
+
         function copyRek() {
             navigator.clipboard.writeText("621101022294539");
             alert("Nomor Rekening Berhasil Disalin!");
         }
 
-        // --- 6. FITUR LAIN (Wish, Animasi, dll) ---
+        // --- 7. FITUR LAIN (Wish, Animasi, dll) ---
         function addWish() {
             const nama = document.getElementById('inputNama').value;
             const pesan = document.getElementById('inputPesan').value;
